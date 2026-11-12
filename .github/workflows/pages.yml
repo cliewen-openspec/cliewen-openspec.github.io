@@ -1,0 +1,17 @@
+name: Deploy organization site
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+  schedule:
+    - cron: '*/15 * * * *'
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+concurrency:
+  group: organization-pages
+  cancel-in-progress: false
+jobs:
+  publish:
+    uses: cliewen-openspec/cliewen-openspec/.github/workflows/organization-pages.yml@main
